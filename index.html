@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Calculator</title>
+
+    <style>
+        body {
+            letter-spacing: 1px;
+        }
+
+        label {
+            font-size: 17px;
+            color: #3d0000;
+        }
+
+        input[type=number] {
+            font-size: 1em;
+            display: block;
+            width: 110px;
+            margin: 2px 0 10px 0;
+        }
+
+        .title {
+            font-size: 1.3em;
+            margin: 0 0 5px 0;
+        }
+
+        .op {
+            font-size: 1.4em;
+        }
+
+        #lista {
+            margin: 25px 0;
+        }
+
+        .volume {
+            width: 100%;
+            font-size: 1.3em;
+
+        }
+
+        button {
+            font-size: 1.2em;
+            background-color: #ededf7;
+            border: 1px solid #b1b1fd;
+            border-radius: 10px;
+            padding: 2px 10px;
+        }
+
+        input[type=reset] {
+            margin: 0 0 0 5px;
+        }
+
+        table{
+            margin-bottom: 10px;
+        }
+
+       td {
+          padding: 5px; 
+          border: 1px solid #000;
+       }
+       b {
+           display: block;
+           text-align: center;
+       }
+
+       select {
+           /* display: block; */
+           padding: 2px;
+       }
+    </style>
+</head>
+
+<body>
+    <p class="op">Aritmetički operatori</p>
+    <table>
+        <tr>
+            <td><b>+</b></td>
+            <td>Sabiranje</td>
+        </tr>
+        <tr>
+            <td><b>-</b></td>
+            <td>Oduzimanje</td>
+        </tr>
+        <tr>
+            <td><b>*</b></td>
+            <td>Množenje</td>
+        </tr>
+        <tr>
+            <td><b>/</b></td>
+            <td>Djeljenje</td>
+        </tr>
+        <tr>
+            <td><b>%</b></td>
+            <td>Ostatak pri deljenju</td>
+        </tr>
+        <tr>
+            <td><b>++</b></td>
+            <td>Uvećanje za jedan</td>
+        </tr>
+        <tr>
+            <td><b>--</b></td>
+            <td>Smanjenje za jedan</td>
+        </tr>
+    </table>
+
+
+    <form action="#" method="post" id="MyForm">
+        <fieldset>
+            <legend class="title">Calculator</legend>
+
+            <label for="firstNum">Unesite X :</label>
+            <input type="number" name="firstNum" id="firstNum" autocomplete="off" required autofocus>
+
+            <label for="secNum">Unesite Y :</label>
+            <input type="number" name="secNum" id="secNum"autocomplete="off" required>
+
+            <div id="lista">
+			
+				<span>Izaberite operaciju&nbsp;</span>
+				
+				<select id="fallDown">
+                    <option value="add" id="add" selected>+ | Sabiranje</option>
+                    <option value="less" id="less">- | Oduzimanje</option>
+                    <option value="times" id="times">* | Množenje</option>
+                    <option value="howin" id="howin">/ | Djeljenje</option>
+                    <option value="residue" id="residue">% | Ostatak</option>
+				</select> <!-- end #selection -->
+
+			</div> <!-- end #fradio -->
+
+            <p class="volume" id="result">X + Y = ?</p>
+
+            <br>
+
+            <button type="submit" value="Calculate" id="submit" onclick="calcuMath()">Calculate</button>
+        </fieldset>
+        
+    </form>
+
+
+    <script>
+
+        function calcuMath(){
+            var z;
+            
+            var x = Number(document.getElementById("firstNum").value);
+            var y = Number(document.getElementById("secNum").value);
+            var sel = document.getElementById("fallDown");
+            var selection = sel.options[sel.selectedIndex].value;
+            
+            if (selection == "add"){
+                selection = "+"
+                z = x + y;
+            } 
+            else if (selection == "less") {
+                selection = "-"
+                z = x - y;
+            }
+            else if (selection == "times"){
+                selection = "*"
+                z = x * y;
+            }
+            else if (selection == "howin"){
+                selection = "/"
+                z = x / y;
+            }
+            else if (selection == "residue"){
+                selection = "%"
+                z = x % y;
+            }
+
+            document.getElementById('result').innerHTML = x + " " + selection + " " + y + " = " + z;
+            
+            return false;
+        }
+        document.getElementById('MyForm').onsubmit = calcuMath;
+    </script>
+</body>
+
+</html>
