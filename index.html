@@ -136,16 +136,15 @@
             <br>
 
             <button type="submit" value="Calculate" id="submit" onclick="calcuMath()">Calculate</button>
-        </fieldset>
-        
+        </fieldset> 
     </form>
-
+    <br>
+    <button onclick="reset()" class="right">Reset</button>
 
     <script>
 
         function calcuMath(){
             var z;
-            
             var x = Number(document.getElementById("firstNum").value);
             var y = Number(document.getElementById("secNum").value);
             var sel = document.getElementById("fallDown");
@@ -177,6 +176,10 @@
             return false;
         }
         document.getElementById('MyForm').onsubmit = calcuMath;
+        // Reload page
+        function reset() {
+         location.reload();	
+        }
     </script>
 </body>
 
