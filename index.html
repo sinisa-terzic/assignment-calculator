@@ -59,23 +59,24 @@
             margin: 0 0 0 5px;
         }
 
-        table{
+        table {
             margin-bottom: 10px;
         }
 
-       td {
-          padding: 5px; 
-          border: 1px solid #000;
-       }
-       b {
-           display: block;
-           text-align: center;
-       }
+        td {
+            padding: 5px;
+            border: 1px solid #000;
+        }
 
-       select {
-           /* display: block; */
-           padding: 2px;
-       }
+        b {
+            display: block;
+            text-align: center;
+        }
+
+        select {
+            /* display: block; */
+            padding: 2px;
+        }
     </style>
 </head>
 
@@ -121,70 +122,82 @@
             <input type="number" name="firstNum" id="firstNum" autocomplete="off" required autofocus>
 
             <label for="secNum">Unesite Y :</label>
-            <input type="number" name="secNum" id="secNum"autocomplete="off" required>
+            <input type="number" name="secNum" id="secNum" autocomplete="off" required>
 
             <div id="lista">
-			
-				<span>Izaberite operaciju&nbsp;</span>
-				
-				<select id="fallDown">
+
+                <span>Izaberite operaciju&nbsp;</span>
+
+                <select id="fallDown">
                     <option value="add" id="add" selected>+ | Sabiranje</option>
                     <option value="less" id="less">- | Oduzimanje</option>
                     <option value="times" id="times">* | Množenje</option>
                     <option value="howin" id="howin">/ | Djeljenje</option>
                     <option value="residue" id="residue">% | Ostatak</option>
-				</select>
+                    <option value="inc" id="inc">++ | Povećanje</option>
+                    <option value="dec" id="dec">-- | Smanjenje</option>
+                </select>
 
-			</div>
+            </div>
 
             <p class="volume" id="result">X + Y = ?</p>
 
             <br>
 
             <button type="submit" value="Calculate" id="submit" onclick="calcuMath()">Calculate</button>
-        </fieldset> 
+        </fieldset>
     </form>
     <br>
     <button onclick="reset()" class="right">Reset</button>
 
     <script>
 
-        function calcuMath(){
+        function calcuMath() {
             var z;
             var x = Number(document.getElementById("firstNum").value);
             var y = Number(document.getElementById("secNum").value);
             var sel = document.getElementById("fallDown");
             var selection = sel.options[sel.selectedIndex].value;
-            
-            if (selection == "add"){
+
+            if (selection == "add") {
                 selection = "+"
                 z = x + y;
-            } 
+            }
             else if (selection == "less") {
                 selection = "-"
                 z = x - y;
             }
-            else if (selection == "times"){
+            else if (selection == "times") {
                 selection = "*"
                 z = x * y;
             }
-            else if (selection == "howin"){
+            else if (selection == "howin") {
                 selection = "/"
                 z = x / y;
             }
-            else if (selection == "residue"){
+            else if (selection == "residue") {
                 selection = "%"
                 z = x % y;
             }
+            else if (selection == "inc") {
+                selection = "+"
+                z = x + y;
+                z++;
+            }
+            else if (selection == "dec") {
+                selection = "-"
+                z = x - y;
+                z--;
+            }
 
             document.getElementById('result').innerHTML = x + " " + selection + " " + y + " = " + z;
-            
+
             return false;
         }
         document.getElementById('MyForm').onsubmit = calcuMath;
         // Reload page
         function reset() {
-            location.reload();	
+            location.reload();
         }
     </script>
 </body>
